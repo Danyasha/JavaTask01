@@ -26,21 +26,46 @@ public class EntryPoint {
 
     public static Person[] personsGenerator(int size){
         String[] names = {"John", "Boris", "Jack"};
-        String[] secondNames = {"Ivanov", "Testov", "Doe"};
+        String[] lastNames = {"Ivanov", "Testov", "Doe"};
 
         Random rand = new Random();
         Person[] persons = new Person[size];
         for (int i = 0; i < size; i++){
-            persons[i] = new Person(rand.nextInt(99), names[rand.nextInt(names.length)], secondNames[rand.nextInt(secondNames.length)], new Person[0]);
-
+            int age = rand.nextInt(99);
+            String name = names[rand.nextInt(names.length)];
+            String secondName = lastNames[rand.nextInt(lastNames.length)];
+            persons[i] = new Person(age, name, secondName, childrenGenetator(age, secondName));
         }
         return persons;
     }
-    public static Long[] longGenerator(int size){
-        Long[] digs = new Long[size];
-        Set<Integer> existingNumbers = new Set<Integer>;
-        return digs;
+
+    public static Person[] childrenGenetator(int parentAge, String lastName){
+        int amountOfChildren;
+        int maxAge = 0;
+        String[] names = {"John", "Boris", "Jack"};
+        Random rand = new Random();
+
+        if (parentAge < 18)
+            amountOfChildren = 0;
+        else{
+            amountOfChildren =   rand.nextInt(3);
+            maxAge = parentAge - 17;
+        }
+        Person[] children = new Person[amountOfChildren];
+        if (amountOfChildren == 0)
+            return children;
+        for (int i = 0; i < amountOfChildren; i++){
+            int age = rand.nextInt(maxAge);
+            children[i] = new Person(age, names[rand.nextInt(names.length)], lastName, childrenGenetator(age, lastName));
+        }
+        return children;
     }
+
+//    public static Long[] longGenerator(int size){
+//        Long[] digs = new Long[size];
+//        Set<Integer> existingNumbers = new Set<Integer>;
+//        return digs;
+//    }
     public static void main(String[] args) {
         // 1. Реализуйте интерфейс Comparable в классе Person //done
         // 2. Создайте массив Person размерностью 100_000
@@ -52,7 +77,7 @@ public class EntryPoint {
         // 5. Создайте массив Long размерностью 100_000
         // 6. Сгенерируйте 100_000 уникальных случайных чисел в диапазоне (Long.MAX_VALUE, Long.MAX_VALUE)
         // Используйте Set<Integer> для обеспечения уникальности создаваемых чисел
-        Long[] digs = longGenerator(1000000);
+//        Long[] digs = longGenerator(1000000);
         // 7. Создайте экземпляры HashMap и TreMap
         Map<Integer, Person> hashMap = new HashMap<>();
         Map<Integer, Person> treeMap = new TreeMap<>();
