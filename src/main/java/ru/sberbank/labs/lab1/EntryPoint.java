@@ -103,20 +103,29 @@ public class EntryPoint {
         for (int i = 0; i < size; i++)
             hashMap.put(digs[i], persons[i]);
         long finish = System.nanoTime();
-        System.out.printf("time for add hashMap in milliseconds:  %f\n", getConsumedTimeInMilliseconds(finish, start));
+        System.out.printf("add hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         start = System.nanoTime();
-        treeMap.putAll(hashMap);
+        for (int i = 0; i < size; i++)
+            treeMap.put(digs[i], persons[i]);
         finish = System.nanoTime();
-        System.out.printf("time for add treeMap in milliseconds:  %f\n", getConsumedTimeInMilliseconds(finish, start));
+        System.out.printf("add treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 9. Используя массив Integer[] извлеките данные из структур данных, измерьте время, затраченное на чтение
+        start = System.nanoTime();
+        Integer hashMapKeys[] = hashMap.keySet().toArray(Integer[]::new);
+        finish = System.nanoTime();
 
+        System.out.printf("read hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
+        start = System.nanoTime();
+        Integer treeMapKeys[] = treeMap.keySet().toArray(Integer[]::new);
+        finish = System.nanoTime();
+        System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 10. Улучшите показатели HashMap на запись, изучив доступные конструкторы HashMap
         Map<Integer, Person> hashMapWithCap = new HashMap<>(size);
         start = System.nanoTime();
         for (int i = 0; i < size; i++)
             hashMapWithCap.put(digs[i], persons[i]);
         finish = System.nanoTime();
-        System.out.printf("time for add hashMapWithCap add in milliseconds:  %f\n", getConsumedTimeInMilliseconds(finish, start));
+        System.out.printf("add hashMapWithCap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 11. Создайте свою собственную структуру данных, реализовав интерфейс IntMap
         // Изучите реализацию соответствующих методов в стандартной реализации HashMap, используйте их
         // как руководство к действию.
