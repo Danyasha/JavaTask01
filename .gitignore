@@ -5,3 +5,4 @@ gradlew.bat
 agent/build
 jdk-13.0.1.jdk
 .gradle
+.DS_Store
