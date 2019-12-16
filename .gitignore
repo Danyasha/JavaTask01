@@ -1,0 +1,7 @@
+.idea
+gradle
+gradlew
+gradlew.bat
+agent/build
+jdk-13.0.1.jdk
+.gradle
