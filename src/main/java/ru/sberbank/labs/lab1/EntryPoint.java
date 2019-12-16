@@ -95,7 +95,7 @@ public class EntryPoint {
         Integer[] digs = integerGenerator(size);
         // 7. Создайте экземпляры HashMap и TreMap
 
-        Map<Integer, Person> hashMap = new HashMap<>();
+        Map<Integer, Person> hashMap = new HashMap<>(size);
         Map<Integer, Person> treeMap = new TreeMap<>();
         // 8. Используя созданный массив Integer[] и Person[] поместите
         // данные в созданные структуры, измерьте время, затраченное на запись данных для TreeMap и HashMap
@@ -120,12 +120,7 @@ public class EntryPoint {
         finish = System.nanoTime();
         System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 10. Улучшите показатели HashMap на запись, изучив доступные конструкторы HashMap
-        Map<Integer, Person> hashMapWithCap = new HashMap<>(size);
-        start = System.nanoTime();
-        for (int i = 0; i < size; i++)
-            hashMapWithCap.put(digs[i], persons[i]);
-        finish = System.nanoTime();
-        System.out.printf("add hashMapWithCap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
+        //Map<Integer, Person> hashMapWithCap = new HashMap<>(size);
         // 11. Создайте свою собственную структуру данных, реализовав интерфейс IntMap
         // Изучите реализацию соответствующих методов в стандартной реализации HashMap, используйте их
         // как руководство к действию.
