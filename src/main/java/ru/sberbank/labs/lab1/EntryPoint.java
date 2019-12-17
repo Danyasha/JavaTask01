@@ -2,10 +2,10 @@ package ru.sberbank.labs.lab1;
 
 import java.util.*;
 /* TODO
-    Все очень неплохо. Но за поставку некомпилирующегося кода в следующий раз буду сильно ругаться плохими словами.
+    Р’СЃРµ РѕС‡РµРЅСЊ РЅРµРїР»РѕС…Рѕ. РќРѕ Р·Р° РїРѕСЃС‚Р°РІРєСѓ РЅРµРєРѕРјРїРёР»РёСЂСѓСЋС‰РµРіРѕСЃСЏ РєРѕРґР° РІ СЃР»РµРґСѓСЋС‰РёР№ СЂР°Р· Р±СѓРґСѓ СЃРёР»СЊРЅРѕ СЂСѓРіР°С‚СЊСЃСЏ РїР»РѕС…РёРјРё СЃР»РѕРІР°РјРё.
  */
 public class EntryPoint {
-    // TODO попробуй сделать из этого Junit тест. Собственно это почти он и есть.
+    // TODO РїРѕРїСЂРѕР±СѓР№ СЃРґРµР»Р°С‚СЊ РёР· СЌС‚РѕРіРѕ Junit С‚РµСЃС‚. РЎРѕР±СЃС‚РІРµРЅРЅРѕ СЌС‚Рѕ РїРѕС‡С‚Рё РѕРЅ Рё РµСЃС‚СЊ.
     public static boolean personTest() {
         boolean isOk = true;
         Person[] children = new Person[0];
@@ -34,7 +34,7 @@ public class EntryPoint {
 
         Random rand = new Random();
         Person[] persons = new Person[size];
-        // TODO попробуй переписать этот кусок со Stream API
+        // TODO РїРѕРїСЂРѕР±СѓР№ РїРµСЂРµРїРёСЃР°С‚СЊ СЌС‚РѕС‚ РєСѓСЃРѕРє СЃРѕ Stream API
         for (int i = 0; i < size; i++){
             int age = rand.nextInt(99);
             String name = names[rand.nextInt(names.length)];
@@ -50,7 +50,7 @@ public class EntryPoint {
         String[] names = {"John", "Boris", "Jack"};
         Random rand = new Random();
 
-        // TODO Не используй if без скобок
+        // TODO РќРµ РёСЃРїРѕР»СЊР·СѓР№ if Р±РµР· СЃРєРѕР±РѕРє
         if (parentAge < 18) {
             amountOfChildren = 0;
         } else {
@@ -58,7 +58,7 @@ public class EntryPoint {
             maxAge = parentAge - 17;
         }
         Person[] children = new Person[amountOfChildren];
-        // TODO Не очень хороший паттерн - несколько точек выхода
+        // TODO РќРµ РѕС‡РµРЅСЊ С…РѕСЂРѕС€РёР№ РїР°С‚С‚РµСЂРЅ - РЅРµСЃРєРѕР»СЊРєРѕ С‚РѕС‡РµРє РІС‹С…РѕРґР°
         if (amountOfChildren == 0) {
             return children;
         }
@@ -79,7 +79,7 @@ public class EntryPoint {
             }
             digsSet.add(temp);
         }
-        // TODO Это не скомпилируется, неверный тип
+        // TODO Р­С‚Рѕ РЅРµ СЃРєРѕРјРїРёР»РёСЂСѓРµС‚СЃСЏ, РЅРµРІРµСЂРЅС‹Р№ С‚РёРї
         //return digsSet.toArray(Integer[]::new);
         return digsSet.toArray(new Integer[0]);
     }
@@ -87,61 +87,61 @@ public class EntryPoint {
         return (finish - start) / (1000 * 1000);
     }
     public static void main(String[] args) {
-        // 1. Реализуйте интерфейс Comparable в классе Person //done
-        // TODO скобки
+        // 1. Р РµР°Р»РёР·СѓР№С‚Рµ РёРЅС‚РµСЂС„РµР№СЃ Comparable РІ РєР»Р°СЃСЃРµ Person //done
+        // TODO СЃРєРѕР±РєРё
         if (!personTest())
             System.out.println("Person compare doesnt working");
         else
             System.out.println("Person compare ok");
-        // 2. Создайте массив Person размерностью 100_000
-        // 3. Сгенерируйте 100_000 экземпляров Person с помощью генератора случайных чисел
-        // Для случайной генерации строковых данных в читаемом виде можно использовать
-        // предопределенные массивы строк firstname[] и lastname[]
-        // 4. Поместите сгенерированные данные в массив
+        // 2. РЎРѕР·РґР°Р№С‚Рµ РјР°СЃСЃРёРІ Person СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊСЋ 100_000
+        // 3. РЎРіРµРЅРµСЂРёСЂСѓР№С‚Рµ 100_000 СЌРєР·РµРјРїР»СЏСЂРѕРІ Person СЃ РїРѕРјРѕС‰СЊСЋ РіРµРЅРµСЂР°С‚РѕСЂР° СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
+        // Р”Р»СЏ СЃР»СѓС‡Р°Р№РЅРѕР№ РіРµРЅРµСЂР°С†РёРё СЃС‚СЂРѕРєРѕРІС‹С… РґР°РЅРЅС‹С… РІ С‡РёС‚Р°РµРјРѕРј РІРёРґРµ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
+        // РїСЂРµРґРѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РјР°СЃСЃРёРІС‹ СЃС‚СЂРѕРє firstname[] Рё lastname[]
+        // 4. РџРѕРјРµСЃС‚РёС‚Рµ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ РјР°СЃСЃРёРІ
         int size = 100000;
         Person[] persons = personsGenerator(size);
-        // 5. Создайте массив Long размерностью 100_000
-        // 6. Сгенерируйте 100_000 уникальных случайных чисел в диапазоне (Long.MAX_VALUE, Long.MAX_VALUE)
-        // Используйте Set<Integer> для обеспечения уникальности создаваемых чисел
+        // 5. РЎРѕР·РґР°Р№С‚Рµ РјР°СЃСЃРёРІ Long СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊСЋ 100_000
+        // 6. РЎРіРµРЅРµСЂРёСЂСѓР№С‚Рµ 100_000 СѓРЅРёРєР°Р»СЊРЅС‹С… СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» РІ РґРёР°РїР°Р·РѕРЅРµ (Long.MAX_VALUE, Long.MAX_VALUE)
+        // РСЃРїРѕР»СЊР·СѓР№С‚Рµ Set<Integer> РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚Рё СЃРѕР·РґР°РІР°РµРјС‹С… С‡РёСЃРµР»
         Integer[] digs = integerGenerator(size);
-        // 7. Создайте экземпляры HashMap и TreMap
+        // 7. РЎРѕР·РґР°Р№С‚Рµ СЌРєР·РµРјРїР»СЏСЂС‹ HashMap Рё TreMap
 
         Map<Integer, Person> hashMap = new HashMap<>(size);
         Map<Integer, Person> treeMap = new TreeMap<>();
-        // 8. Используя созданный массив Integer[] и Person[] поместите
-        // данные в созданные структуры, измерьте время, затраченное на запись данных для TreeMap и HashMap
+        // 8. РСЃРїРѕР»СЊР·СѓСЏ СЃРѕР·РґР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ Integer[] Рё Person[] РїРѕРјРµСЃС‚РёС‚Рµ
+        // РґР°РЅРЅС‹Рµ РІ СЃРѕР·РґР°РЅРЅС‹Рµ СЃС‚СЂСѓРєС‚СѓСЂС‹, РёР·РјРµСЂСЊС‚Рµ РІСЂРµРјСЏ, Р·Р°С‚СЂР°С‡РµРЅРЅРѕРµ РЅР° Р·Р°РїРёСЃСЊ РґР°РЅРЅС‹С… РґР»СЏ TreeMap Рё HashMap
         long start = System.nanoTime();
-        // TODO скобки
+        // TODO СЃРєРѕР±РєРё
         for (int i = 0; i < size; i++)
             hashMap.put(digs[i], persons[i]);
         long finish = System.nanoTime();
         System.out.printf("add hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         start = System.nanoTime();
-        // TODO скобки
+        // TODO СЃРєРѕР±РєРё
         for (int i = 0; i < size; i++)
             treeMap.put(digs[i], persons[i]);
         finish = System.nanoTime();
         System.out.printf("add treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
-        // 9. Используя массив Integer[] извлеките данные из структур данных, измерьте время, затраченное на чтение
+        // 9. РСЃРїРѕР»СЊР·СѓСЏ РјР°СЃСЃРёРІ Integer[] РёР·РІР»РµРєРёС‚Рµ РґР°РЅРЅС‹Рµ РёР· СЃС‚СЂСѓРєС‚СѓСЂ РґР°РЅРЅС‹С…, РёР·РјРµСЂСЊС‚Рµ РІСЂРµРјСЏ, Р·Р°С‚СЂР°С‡РµРЅРЅРѕРµ РЅР° С‡С‚РµРЅРёРµ
         start = System.nanoTime();
-        // TODO Это не скомпилируется, неверный тип
+        // TODO Р­С‚Рѕ РЅРµ СЃРєРѕРјРїРёР»РёСЂСѓРµС‚СЃСЏ, РЅРµРІРµСЂРЅС‹Р№ С‚РёРї
         //Integer hashMapKeys[] = hashMap.keySet().toArray(Integer[]::new);
         Integer hashMapKeys[] = hashMap.keySet().toArray(new Integer[0]);
         finish = System.nanoTime();
 
         System.out.printf("read hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         start = System.nanoTime();
-        // TODO Это не скомпилируется, неверный тип
+        // TODO Р­С‚Рѕ РЅРµ СЃРєРѕРјРїРёР»РёСЂСѓРµС‚СЃСЏ, РЅРµРІРµСЂРЅС‹Р№ С‚РёРї
         Integer treeMapKeys[] = treeMap.keySet().toArray(new Integer[0]);
         finish = System.nanoTime();
         System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
-        // 10. Улучшите показатели HashMap на запись, изучив доступные конструкторы HashMap
+        // 10. РЈР»СѓС‡С€РёС‚Рµ РїРѕРєР°Р·Р°С‚РµР»Рё HashMap РЅР° Р·Р°РїРёСЃСЊ, РёР·СѓС‡РёРІ РґРѕСЃС‚СѓРїРЅС‹Рµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ HashMap
         //Map<Integer, Person> hashMapWithCap = new HashMap<>(size);
-        // 11. Создайте свою собственную структуру данных, реализовав интерфейс IntMap
-        // Изучите реализацию соответствующих методов в стандартной реализации HashMap, используйте их
-        // как руководство к действию.
-        // 12. Измерьте производительность созданной структуры данных.
+        // 11. РЎРѕР·РґР°Р№С‚Рµ СЃРІРѕСЋ СЃРѕР±СЃС‚РІРµРЅРЅСѓСЋ СЃС‚СЂСѓРєС‚СѓСЂСѓ РґР°РЅРЅС‹С…, СЂРµР°Р»РёР·РѕРІР°РІ РёРЅС‚РµСЂС„РµР№СЃ IntMap
+        // РР·СѓС‡РёС‚Рµ СЂРµР°Р»РёР·Р°С†РёСЋ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… РјРµС‚РѕРґРѕРІ РІ СЃС‚Р°РЅРґР°СЂС‚РЅРѕР№ СЂРµР°Р»РёР·Р°С†РёРё HashMap, РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РёС…
+        // РєР°Рє СЂСѓРєРѕРІРѕРґСЃС‚РІРѕ Рє РґРµР№СЃС‚РІРёСЋ.
+        // 12. РР·РјРµСЂСЊС‚Рµ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚СЊ СЃРѕР·РґР°РЅРЅРѕР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С….
 
-        // P.S. Опционально: реализовать все измерительные процедуры в junit тестах
+        // P.S. РћРїС†РёРѕРЅР°Р»СЊРЅРѕ: СЂРµР°Р»РёР·РѕРІР°С‚СЊ РІСЃРµ РёР·РјРµСЂРёС‚РµР»СЊРЅС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹ РІ junit С‚РµСЃС‚Р°С…
     }
 }
