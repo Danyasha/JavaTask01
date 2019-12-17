@@ -6,27 +6,6 @@ import java.util.*;
  */
 public class EntryPoint {
     // TODO попробуй сделать из этого Junit тест. Собственно это почти он и есть.
-    public static boolean personTest() {
-        boolean isOk = true;
-        Person[] children = new Person[0];
-        Person oldPerson = new Person(66, "test", "test", children);
-        Person youngPerson = new Person(16, "test", "test", children);
-        Person secondYoungPerson = new Person(16, "test", "test", children);
-        // TODO - made in India
-        if (oldPerson.compareTo((youngPerson)) < 0){
-            isOk = false;
-        }
-        if (youngPerson.compareTo((oldPerson)) > 0){
-            isOk = false;
-        }
-        if (youngPerson.compareTo((secondYoungPerson)) != 0){
-            isOk = false;
-        }
-        // TODO - made in India => return isOk
-        if (isOk)
-            return true;
-        return false;
-    }
 
     public static Person[] personsGenerator(int size){
         String[] names = {"John", "Boris", "Jack"};
@@ -35,6 +14,7 @@ public class EntryPoint {
         Random rand = new Random();
         Person[] persons = new Person[size];
         // TODO попробуй переписать этот кусок со Stream API
+
         for (int i = 0; i < size; i++){
             int age = rand.nextInt(99);
             String name = names[rand.nextInt(names.length)];
@@ -59,12 +39,11 @@ public class EntryPoint {
         }
         Person[] children = new Person[amountOfChildren];
         // TODO Не очень хороший паттерн - несколько точек выхода
-        if (amountOfChildren == 0) {
-            return children;
-        }
-        for (int i = 0; i < amountOfChildren; i++){
-            int age = rand.nextInt(maxAge);
-            children[i] = new Person(age, names[rand.nextInt(names.length)], lastName, childrenGenerator(age, lastName));
+        if (amountOfChildren != 0) {//исправил
+            for (int i = 0; i < amountOfChildren; i++) {
+                int age = rand.nextInt(maxAge);
+                children[i] = new Person(age, names[rand.nextInt(names.length)], lastName, childrenGenerator(age, lastName));
+            }
         }
         return children;
     }
@@ -80,7 +59,7 @@ public class EntryPoint {
             digsSet.add(temp);
         }
         // TODO Это не скомпилируется, неверный тип
-        //return digsSet.toArray(Integer[]::new);
+        //Интелледжи схавал и сам такую конструкцию предложил :(
         return digsSet.toArray(new Integer[0]);
     }
     public  static  float getConsumedTimeInMilliseconds(long finish, long start){
@@ -89,10 +68,11 @@ public class EntryPoint {
     public static void main(String[] args) {
         // 1. Реализуйте интерфейс Comparable в классе Person //done
         // TODO скобки
-        if (!personTest())
+        if (!personTest()) {
             System.out.println("Person compare doesnt working");
-        else
+        } else {
             System.out.println("Person compare ok");
+        }
         // 2. Создайте массив Person размерностью 100_000
         // 3. Сгенерируйте 100_000 экземпляров Person с помощью генератора случайных чисел
         // Для случайной генерации строковых данных в читаемом виде можно использовать
@@ -112,20 +92,21 @@ public class EntryPoint {
         // данные в созданные структуры, измерьте время, затраченное на запись данных для TreeMap и HashMap
         long start = System.nanoTime();
         // TODO скобки
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) {
             hashMap.put(digs[i], persons[i]);
+        }
         long finish = System.nanoTime();
         System.out.printf("add hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         start = System.nanoTime();
         // TODO скобки
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) {
             treeMap.put(digs[i], persons[i]);
+        }
         finish = System.nanoTime();
         System.out.printf("add treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 9. Используя массив Integer[] извлеките данные из структур данных, измерьте время, затраченное на чтение
         start = System.nanoTime();
         // TODO Это не скомпилируется, неверный тип
-        //Integer hashMapKeys[] = hashMap.keySet().toArray(Integer[]::new);
         Integer hashMapKeys[] = hashMap.keySet().toArray(new Integer[0]);
         finish = System.nanoTime();
 
