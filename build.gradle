@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'lab1'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "http://nexus.sigma.sbrf.ru:8099/nexus/content/groups/public"
+    }
+
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

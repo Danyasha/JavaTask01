@@ -8,5 +8,3 @@ jdk-13.0.1.jdk
 .DS_Store
 out
 build
-build.gradle
-settings.gradle
