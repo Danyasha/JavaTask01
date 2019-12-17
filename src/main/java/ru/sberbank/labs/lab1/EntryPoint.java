@@ -68,11 +68,6 @@ public class EntryPoint {
     public static void main(String[] args) {
         // 1. Реализуйте интерфейс Comparable в классе Person //done
         // TODO скобки
-        if (!personTest()) {
-            System.out.println("Person compare doesnt working");
-        } else {
-            System.out.println("Person compare ok");
-        }
         // 2. Создайте массив Person размерностью 100_000
         // 3. Сгенерируйте 100_000 экземпляров Person с помощью генератора случайных чисел
         // Для случайной генерации строковых данных в читаемом виде можно использовать
