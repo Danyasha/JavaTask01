@@ -66,16 +66,11 @@ public class EntryPoint {
         // 4. Поместите сгенерированные данные в массив
         int size = 100000;
         Person[] persons = personsGenerator(size);
-        // 5. Создайте массив Long размерностью 100_000
-        // 6. Сгенерируйте 100_000 уникальных случайных чисел в диапазоне (Long.MAX_VALUE, Long.MAX_VALUE)
-        // Используйте Set<Integer> для обеспечения уникальности создаваемых чисел
         Integer[] digs = integerGenerator(size);
         // 7. Создайте экземпляры HashMap и TreMap
 
         Map<Integer, Person> hashMap = new HashMap<>(size);
         Map<Integer, Person> treeMap = new TreeMap<>();
-        // 8. Используя созданный массив Integer[] и Person[] поместите
-        // данные в созданные структуры, измерьте время, затраченное на запись данных для TreeMap и HashMap
         long start = System.nanoTime();
         for (int i = 0; i < size; i++) {
             hashMap.put(digs[i], persons[i]);
@@ -88,24 +83,20 @@ public class EntryPoint {
         }
         finish = System.nanoTime();
         System.out.printf("add treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
-        // 9. Используя массив Integer[] извлеките данные из структур данных, измерьте время, затраченное на чтение
-        // TODO интересно среднее время извлечения значения по ключу, здесь измеряется время копирования коллекции,
-        // что не очень показательно и интересно
-        start = System.nanoTime();
-        Integer hashMapKeys[] = hashMap.keySet().toArray(new Integer[0]);
+
+        for (int i = 0; i < size; i++) {
+            hashMap.get(digs[i]);
+        }
         finish = System.nanoTime();
 
         System.out.printf("read hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // TODO то же что и выше
         start = System.nanoTime();
-        Integer treeMapKeys[] = treeMap.keySet().toArray(new Integer[0]);
+        for (int i = 0; i < size; i++) {
+            treeMap.get(digs[i]);
+        }
         finish = System.nanoTime();
         System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
-        // 10. Улучшите показатели HashMap на запись, изучив доступные конструкторы HashMap
-        //Map<Integer, Person> hashMapWithCap = new HashMap<>(size);
-        // 11. Создайте свою собственную структуру данных, реализовав интерфейс IntMap
-        // Изучите реализацию соответствующих методов в стандартной реализации HashMap, используйте их
-        // как руководство к действию.
         MyHashMap<Person> myHashMap = new MyHashMap<>(size, 0.75);
         // 12. Измерьте производительность созданной структуры данных.
         start = System.nanoTime();

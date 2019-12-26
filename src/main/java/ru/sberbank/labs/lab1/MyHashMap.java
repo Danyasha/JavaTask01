@@ -77,6 +77,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
                     // TODO здесь линейный поиск - плохо
                     bucket.remove(temp);
                     this.size--;
+                    break;
                 }
             }
 
@@ -89,13 +90,10 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V remove(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
-        // TODO не нужно это проверять
-        if (!bucket.isEmpty()){
-            for(IntEntry<V> temp: bucket){
-                if (temp.getKey() == i){
-                    bucket.remove(temp);
-                    this.size--;
-                }
+        for(IntEntry<V> temp: bucket){
+            if (temp.getKey() == i){
+                bucket.remove(temp);
+                this.size--;
             }
         }
         return null;
@@ -110,12 +108,9 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public boolean containsKey(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
-        // TODO не нужно это проверять
-        if (!bucket.isEmpty()) {
-            for (IntEntry<V> temp : bucket) {
-                if (temp.getKey() == i) {
-                    return true;
-                }
+        for (IntEntry<V> temp : bucket) {
+            if (temp.getKey() == i) {
+                return true;
             }
         }
         return false;
@@ -124,11 +119,9 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public boolean containsValue(V o) {
         for(LinkedList<IntEntry<V>> bucket: this.buckets){
-            // TODO не нужно это проверять
-            if (!bucket.isEmpty()){
-                for(IntEntry<V> temp: bucket){
-                    if (o.compareTo(temp.getValue()) == 0)
-                        return true;
+            for(IntEntry<V> temp: bucket){
+                if (o.compareTo(temp.getValue()) == 0) {
+                    return true;
                 }
             }
         }
