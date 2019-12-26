@@ -68,4 +68,28 @@ public class MyHashMapTest {
         }
         assertTrue(entrySet.containsAll(myHashMap.entrySet()));
     }
+
+    @Test
+    public void get() {
+        MyHashMap<Integer> map = new MyHashMap<>();
+        for(int i = 0; i < 1000; i++) {
+            map.put(i, i);
+        }
+        for(int i = 0; i < 1000; i++){
+            assertEquals(i, (int)map.get(i));
+        }
+
+    }
+
+    @Test
+    public void remove() {
+        MyHashMap<Integer> map = new MyHashMap<>();
+        for(int i = 0; i < 1000; i++) {
+            map.put(i, i);
+        }
+        for(int i = 0; i < 1000; i++) {
+            map.remove(i);
+        }
+        assertTrue(map.isEmpty());
+    }
 }
