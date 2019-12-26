@@ -94,6 +94,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
             if (temp.getKey() == i){
                 bucket.remove(temp);
                 this.size--;
+                break;
             }
         }
         return null;
