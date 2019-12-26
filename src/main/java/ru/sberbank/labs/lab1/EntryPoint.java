@@ -13,8 +13,6 @@ public class EntryPoint {
 
         Random rand = new Random();
         Person[] persons = new Person[size];
-        // TODO попробуй переписать этот кусок со Stream API
-
         for (int i = 0; i < size; i++){
             int age = rand.nextInt(99);
             String name = names[rand.nextInt(names.length)];
@@ -24,7 +22,7 @@ public class EntryPoint {
         return persons;
     }
 
-    public static Person[] childrenGenerator(int parentAge, String lastName){
+    public static Person[] childrenGenerator(int parentAge, String secondName){
         int amountOfChildren;
         int maxAge = 0;
         String[] names = {"John", "Boris", "Jack"};
@@ -34,7 +32,7 @@ public class EntryPoint {
         if (parentAge < 18) {
             amountOfChildren = 0;
         } else {
-            amountOfChildren =   rand.nextInt(3);
+            amountOfChildren =  rand.nextInt(3);
             maxAge = parentAge - 17;
         }
         Person[] children = new Person[amountOfChildren];
@@ -42,7 +40,8 @@ public class EntryPoint {
         if (amountOfChildren != 0) {//исправил
             for (int i = 0; i < amountOfChildren; i++) {
                 int age = rand.nextInt(maxAge);
-                children[i] = new Person(age, names[rand.nextInt(names.length)], lastName, childrenGenerator(age, lastName));
+                children[i] = new Person(age, names[rand.nextInt(names.length)], secondName,
+                        childrenGenerator(age, secondName));
             }
         }
         return children;
@@ -116,8 +115,19 @@ public class EntryPoint {
         // 11. Создайте свою собственную структуру данных, реализовав интерфейс IntMap
         // Изучите реализацию соответствующих методов в стандартной реализации HashMap, используйте их
         // как руководство к действию.
+        MyHashMap<Person> myHashMap = new MyHashMap<>(size, 0.75);
         // 12. Измерьте производительность созданной структуры данных.
-
+        // TODO Это не скомпилируется, неверный тип
+        start = System.nanoTime();
+        for (int i = 0; i < size; i++) {
+            myHashMap.put(digs[i], persons[i]);
+        }
+        finish = System.nanoTime();
+        System.out.printf("write time myHashMap ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
+        start = System.nanoTime();
+        Set<IntEntry<Person>> entrySet = myHashMap.entrySet();
+        finish = System.nanoTime();
+        System.out.printf("read time myHashMap ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // P.S. Опционально: реализовать все измерительные процедуры в junit тестах
     }
 }

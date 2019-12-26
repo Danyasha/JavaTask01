@@ -9,13 +9,12 @@ import static org.junit.Assert.*;
 public class PersonTest {
     @Test
     public void compareToTest() {
-        boolean isOk = true;
         Person[] children = new Person[0];
         Person oldPerson = new Person(66, "test", "test", children);
         Person youngPerson = new Person(16, "test", "test", children);
         Person secondYoungPerson = new Person(16, "test", "test", children);
-        ArrayList<Integer> expected = new ArrayList();
-        ArrayList<Integer> actual = new ArrayList();
+        ArrayList<Integer> expected = new ArrayList<>();
+        ArrayList<Integer> actual = new ArrayList<>();
 
         actual.add(oldPerson.compareTo(youngPerson));
         expected.add(oldPerson.getAge() - youngPerson.getAge());
