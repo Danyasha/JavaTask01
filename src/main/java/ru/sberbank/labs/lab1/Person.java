@@ -31,12 +31,9 @@ public final class Person implements Comparable<Person> {
         return Arrays.copyOf(children, children.length, Person[].class);
     }
 
-    // TODO хочу сравнение снаачла по алфавиту, потом по возрасту
     @Override
     public int compareTo(Person other) {
-        int result;
-
-        result = this.getLastName().compareTo(other.getLastName());
+        int result = this.getLastName().compareTo(other.getLastName());
         if (result != 0) {
             return result;
         } else {

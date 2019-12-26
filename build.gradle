@@ -8,11 +8,14 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
-    jcenter()
     maven {
         url "http://nexus.sigma.sbrf.ru:8099/nexus/content/groups/public"
     }
+    maven {
+        url "http://nexus.sigma.sbrf.ru:8099/nexus/content/repositories/central"
+    }
+    mavenCentral()
+    jcenter()
 
 }
 

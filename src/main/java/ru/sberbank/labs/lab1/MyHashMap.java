@@ -5,6 +5,7 @@ import java.util.*;
 public class MyHashMap<V extends Comparable> implements IntMap<V>{
     private int capacity = 16;
     private int size = 0;
+    // TODO здесь неэффективно использовать ArrayList, попробуй Array
     private ArrayList<LinkedList<IntEntry<V>>> buckets;
     private double loadFactor = 0.75;
 
@@ -65,6 +66,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V put(int key, V value) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(key));
+        // TODO попробуй здесь воспользоваться итератором. Упростит код, получишь рост производительности
         if (bucket.isEmpty()){
             bucket.add(new IntEntry<V>(key, value));
             this.addSize();
@@ -72,6 +74,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
         else {
             for(IntEntry<V> temp: bucket){
                 if (temp.getKey() == key){
+                    // TODO здесь линейный поиск - плохо
                     bucket.remove(temp);
                     this.size--;
                 }
@@ -86,6 +89,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V remove(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
+        // TODO не нужно это проверять
         if (!bucket.isEmpty()){
             for(IntEntry<V> temp: bucket){
                 if (temp.getKey() == i){
@@ -106,6 +110,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public boolean containsKey(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
+        // TODO не нужно это проверять
         if (!bucket.isEmpty()) {
             for (IntEntry<V> temp : bucket) {
                 if (temp.getKey() == i) {
@@ -119,6 +124,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public boolean containsValue(V o) {
         for(LinkedList<IntEntry<V>> bucket: this.buckets){
+            // TODO не нужно это проверять
             if (!bucket.isEmpty()){
                 for(IntEntry<V> temp: bucket){
                     if (o.compareTo(temp.getValue()) == 0)

@@ -1,11 +1,8 @@
 package ru.sberbank.labs.lab1;
 
 import java.util.*;
-/* TODO
-    Все очень неплохо. Но за поставку некомпилирующегося кода в следующий раз буду сильно ругаться плохими словами.
- */
+
 public class EntryPoint {
-    // TODO попробуй сделать из этого Junit тест. Собственно это почти он и есть.
 
     public static Person[] personsGenerator(int size){
         String[] names = {"John", "Boris", "Jack"};
@@ -28,7 +25,6 @@ public class EntryPoint {
         String[] names = {"John", "Boris", "Jack"};
         Random rand = new Random();
 
-        // TODO Не используй if без скобок
         if (parentAge < 18) {
             amountOfChildren = 0;
         } else {
@@ -36,7 +32,6 @@ public class EntryPoint {
             maxAge = parentAge - 17;
         }
         Person[] children = new Person[amountOfChildren];
-        // TODO Не очень хороший паттерн - несколько точек выхода
         if (amountOfChildren != 0) {//исправил
             for (int i = 0; i < amountOfChildren; i++) {
                 int age = rand.nextInt(maxAge);
@@ -57,8 +52,6 @@ public class EntryPoint {
             }
             digsSet.add(temp);
         }
-        // TODO Это не скомпилируется, неверный тип
-        //Интелледжи схавал и сам такую конструкцию предложил :(
         return digsSet.toArray(new Integer[0]);
     }
     public  static  float getConsumedTimeInMilliseconds(long finish, long start){
@@ -66,7 +59,6 @@ public class EntryPoint {
     }
     public static void main(String[] args) {
         // 1. Реализуйте интерфейс Comparable в классе Person //done
-        // TODO скобки
         // 2. Создайте массив Person размерностью 100_000
         // 3. Сгенерируйте 100_000 экземпляров Person с помощью генератора случайных чисел
         // Для случайной генерации строковых данных в читаемом виде можно использовать
@@ -85,28 +77,27 @@ public class EntryPoint {
         // 8. Используя созданный массив Integer[] и Person[] поместите
         // данные в созданные структуры, измерьте время, затраченное на запись данных для TreeMap и HashMap
         long start = System.nanoTime();
-        // TODO скобки
         for (int i = 0; i < size; i++) {
             hashMap.put(digs[i], persons[i]);
         }
         long finish = System.nanoTime();
         System.out.printf("add hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         start = System.nanoTime();
-        // TODO скобки
         for (int i = 0; i < size; i++) {
             treeMap.put(digs[i], persons[i]);
         }
         finish = System.nanoTime();
         System.out.printf("add treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         // 9. Используя массив Integer[] извлеките данные из структур данных, измерьте время, затраченное на чтение
+        // TODO интересно среднее время извлечения значения по ключу, здесь измеряется время копирования коллекции,
+        // что не очень показательно и интересно
         start = System.nanoTime();
-        // TODO Это не скомпилируется, неверный тип
         Integer hashMapKeys[] = hashMap.keySet().toArray(new Integer[0]);
         finish = System.nanoTime();
 
         System.out.printf("read hashMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
+        // TODO то же что и выше
         start = System.nanoTime();
-        // TODO Это не скомпилируется, неверный тип
         Integer treeMapKeys[] = treeMap.keySet().toArray(new Integer[0]);
         finish = System.nanoTime();
         System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
@@ -117,7 +108,6 @@ public class EntryPoint {
         // как руководство к действию.
         MyHashMap<Person> myHashMap = new MyHashMap<>(size, 0.75);
         // 12. Измерьте производительность созданной структуры данных.
-        // TODO Это не скомпилируется, неверный тип
         start = System.nanoTime();
         for (int i = 0; i < size; i++) {
             myHashMap.put(digs[i], persons[i]);
@@ -128,6 +118,5 @@ public class EntryPoint {
         Set<IntEntry<Person>> entrySet = myHashMap.entrySet();
         finish = System.nanoTime();
         System.out.printf("read time myHashMap ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
-        // P.S. Опционально: реализовать все измерительные процедуры в junit тестах
     }
 }
