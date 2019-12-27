@@ -72,15 +72,7 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
             this.addSize();
         }
         else {
-            Iterator bucketIterator = bucket.iterator();
-            while(bucketIterator.hasNext()){
-                IntEntry<V> temp = (IntEntry<V>)bucketIterator.next();
-                if (temp.getKey() == key){
-                    bucketIterator.remove();
-                    this.size--;
-                    break;
-                }
-            }
+            this.remove(key);
             bucket.add(new IntEntry<>(key, value));
             this.addSize();
         }
@@ -99,13 +91,6 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
                 break;
             }
         }
-//        for(IntEntry<V> temp: bucket){
-//            if (temp.getKey() == i){
-//                bucket.remove(temp);
-//                this.size--;
-//                break;
-//            }
-//        }
         return null;
     }
 
