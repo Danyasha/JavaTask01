@@ -109,5 +109,7 @@ public class EntryPoint {
         Set<IntEntry<Person>> entrySet = myHashMap.entrySet();
         finish = System.nanoTime();
         System.out.printf("read time myHashMap ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
+        int n = 50;
+        System.out.println(Integer.hashCode(n));
     }
 }
