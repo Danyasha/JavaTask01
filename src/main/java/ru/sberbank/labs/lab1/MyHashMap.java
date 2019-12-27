@@ -81,15 +81,6 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
                     break;
                 }
             }
-//            for (IntEntry<V> temp : bucket) {
-//                if (temp.getKey() == key) {
-//                    // TODO здесь линейный поиск - плохо
-//                    bucket.remove(temp);
-//                    this.size--;
-//                    break;
-//                }
-//            }
-
             bucket.add(new IntEntry<>(key, value));
             this.addSize();
         }
@@ -99,13 +90,22 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V remove(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
-        for(IntEntry<V> temp: bucket){
+        Iterator bucketIterator = bucket.iterator();
+        while(bucketIterator.hasNext()){
+            IntEntry<V> temp = (IntEntry<V>)bucketIterator.next();
             if (temp.getKey() == i){
-                bucket.remove(temp);
+                bucketIterator.remove();
                 this.size--;
                 break;
             }
         }
+//        for(IntEntry<V> temp: bucket){
+//            if (temp.getKey() == i){
+//                bucket.remove(temp);
+//                this.size--;
+//                break;
+//            }
+//        }
         return null;
     }
 
