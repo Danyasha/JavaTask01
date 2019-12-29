@@ -6,12 +6,15 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     private int capacity = 16;
     private int size = 0;
     // TODO здесь неэффективно использовать ArrayList, попробуй Array
-    private ArrayList<LinkedList<IntEntry<V>>> buckets;
+    private LinkedList<IntEntry<V>>[] arrayBuckets;
+    private List<LinkedList<IntEntry<V>>> buckets;
     private double loadFactor = 0.75;
 
     private void resize(){
         int newCapacity = this.capacity * 2;
-        ArrayList<LinkedList<IntEntry<V>>> newBuckets = new ArrayList<LinkedList<IntEntry<V>>>(newCapacity);
+        List<LinkedList<IntEntry<V>>> newBuckets = new ArrayList<>(newCapacity);
+        @SuppressWarnings("unchecked")
+        LinkedList<IntEntry<V>>[] newArrayBuckets = new LinkedList[newCapacity];
         for (int i = 0; i < newCapacity; i++){
             newBuckets.add(new LinkedList<IntEntry<V>>());
         }
@@ -67,6 +70,9 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     public V put(int key, V value) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(key));
         // TODO попробуй здесь воспользоваться итератором. Упростит код, получишь рост производительности
+        ListIterator<IntEntry<V>> it = bucket.listIterator();
+        it.set(new IntEntry<>(key, value));
+
         if (bucket.isEmpty()){
             bucket.add(new IntEntry<V>(key, value));
             this.addSize();
@@ -82,9 +88,9 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V remove(int i) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(i));
-        Iterator bucketIterator = bucket.iterator();
+        Iterator<IntEntry<V>>  bucketIterator = bucket.iterator();
         while(bucketIterator.hasNext()){
-            IntEntry<V> temp = (IntEntry<V>)bucketIterator.next();
+            IntEntry<V> temp = bucketIterator.next();
             if (temp.getKey() == i){
                 bucketIterator.remove();
                 this.size--;
