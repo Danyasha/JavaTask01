@@ -98,7 +98,6 @@ public class EntryPoint {
         finish = System.nanoTime();
         System.out.printf("read treeMap in ms:\t%f\n", getConsumedTimeInMilliseconds(finish, start));
         MyHashMap<Person> myHashMap = new MyHashMap<>(size, 0.75);
-        // 12. Измерьте производительность созданной структуры данных.
         start = System.nanoTime();
         for (int i = 0; i < size; i++) {
             myHashMap.put(digs[i], persons[i]);

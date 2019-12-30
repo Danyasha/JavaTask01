@@ -3,6 +3,8 @@ package ru.sberbank.labs.lab1;
 import java.util.*;
 
 public class MyHashMap<V extends Comparable> implements IntMap<V>{
+    private static final int defaultCapacity = 16;
+    private static final double defaultLoadFactor = 0.75;
     private int capacity = 16;
     private int size = 0;
     // TODO здесь неэффективно использовать ArrayList, попробуй Array
@@ -35,17 +37,10 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     }
     private int getIndex(int hash){return hash & (this.capacity - 1);}
     public MyHashMap(){
-        this.buckets = new ArrayList<LinkedList<IntEntry<V>>>(this.capacity);
-        for (int i = 0; i < this.capacity; i++){
-            this.buckets.add(new LinkedList<IntEntry<V>>());
-        }
+        this(defaultCapacity, defaultLoadFactor);
     }
     public MyHashMap(int capacity){
-        this.capacity = capacity;
-        this.buckets = new ArrayList<LinkedList<IntEntry<V>>>(this.capacity);
-        for (int i = 0; i < this.capacity; i++){
-            this.buckets.add(new LinkedList<IntEntry<V>>());
-        }
+        this(capacity, defaultLoadFactor);
     }
     public MyHashMap(int capacity, double loadFactor){
         this.capacity = capacity;
@@ -69,19 +64,15 @@ public class MyHashMap<V extends Comparable> implements IntMap<V>{
     @Override
     public V put(int key, V value) {
         LinkedList<IntEntry<V>> bucket = this.buckets.get(this.getIndex(key));
-        // TODO попробуй здесь воспользоваться итератором. Упростит код, получишь рост производительности
         ListIterator<IntEntry<V>> it = bucket.listIterator();
-        it.set(new IntEntry<>(key, value));
+        //it.add(new IntEntry<>(key, value));
 
-        if (bucket.isEmpty()){
-            bucket.add(new IntEntry<V>(key, value));
-            this.addSize();
-        }
-        else {
+        if (!bucket.isEmpty()){
             this.remove(key);
-            bucket.add(new IntEntry<>(key, value));
-            this.addSize();
         }
+        it.add(new IntEntry<>(key, value));
+//        bucket.add(new IntEntry<>(key, value));
+        this.addSize();
         return value;
     }
 
